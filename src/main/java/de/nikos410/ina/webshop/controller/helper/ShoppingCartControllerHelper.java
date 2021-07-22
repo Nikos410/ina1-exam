@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Optional;
 
 import static java.util.Objects.isNull;
@@ -73,9 +73,9 @@ public class ShoppingCartControllerHelper extends ControllerHelper {
     }
 
     private Collection<ShoppingCartArticle> getOrCreateShoppingCart() {
-        Collection<ShoppingCartArticle> shoppingCart = getSessionAttribute(SHOPPING_CART_ATTRIBUTE_NAME, HashSet.class);
+        Collection<ShoppingCartArticle> shoppingCart = getSessionAttribute(SHOPPING_CART_ATTRIBUTE_NAME, Collection.class);
         if (isNull(shoppingCart)) {
-            shoppingCart = new HashSet<>();
+            shoppingCart = new LinkedList<>();
             setSessionAttribute(SHOPPING_CART_ATTRIBUTE_NAME, shoppingCart);
         }
 
