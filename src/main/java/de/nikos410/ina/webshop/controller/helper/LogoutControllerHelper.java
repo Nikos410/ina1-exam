@@ -1,10 +1,12 @@
 package de.nikos410.ina.webshop.controller.helper;
 
-import de.nikos410.ina.webshop.util.AuthenticationUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+
+import static de.nikos410.ina.webshop.controller.helper.ShoppingCartControllerHelper.SHOPPING_CART_ATTRIBUTE_NAME;
+import static de.nikos410.ina.webshop.util.AuthenticationUtils.AUTHENTICATED_USER_ATTRIBUTE_NAME;
 
 public class LogoutControllerHelper extends ControllerHelper {
 
@@ -19,6 +21,7 @@ public class LogoutControllerHelper extends ControllerHelper {
     }
 
     private void clearSession() {
-        getRequest().getSession().setAttribute(AuthenticationUtils.AUTHENTICATED_USER_ATTRIBUTE_NAME, null);
+        setSessionAttribute(AUTHENTICATED_USER_ATTRIBUTE_NAME, null);
+        setSessionAttribute(SHOPPING_CART_ATTRIBUTE_NAME, null);
     }
 }
