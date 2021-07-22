@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1 style="text-align: center">
-    Willkommen, <%=
+    Welcome, <%=
 AuthenticationUtils.getAuthenticatedUser(request)
         .map(User::getFullName)
         .orElseThrow(() -> new IllegalStateException("No authenticated user found."))
@@ -19,7 +19,7 @@ AuthenticationUtils.getAuthenticatedUser(request)
 
 <div style="display: flex">
     <div style="flex: 50%; padding: 1%">
-        <h2 style="text-align: center">Verfügbare Artikel</h2>
+        <h2 style="text-align: center">Available articles</h2>
 
         <%
             final Collection<StockArticle> availableArticles =
@@ -34,9 +34,11 @@ AuthenticationUtils.getAuthenticatedUser(request)
                 out.print(article.getDescription());
                 out.println("</em></p>");
 
-                out.print("<p>");
-                out.print(article.getStockQuantity() + " in stock.");
-                out.println("</p>");
+                out.println("<form method=\"post\" action=\"/add-to-cart\">");
+                out.println("<input name=\"article\" type=\"hidden\" value=\"" + article.getId() + "\">");
+                out.println("<label><input name=\"quantity\" type=\"number\" min=\"0\" max=\"" + article.getStockQuantity() + "\" placeholder=\"Quantity\" required=\"required\"><span>" + article.getStockQuantity() + " in stock</span></label>");
+                out.println("<button type=\"submit\">Add to cart</button>");
+                out.println("</form>");
 
                 out.println("<hr/>");
             }
@@ -44,7 +46,7 @@ AuthenticationUtils.getAuthenticatedUser(request)
     </div>
 
     <div style="flex: 50%; padding: 1%">
-        <h2 style="text-align: center">Warenkorb</h2>
+        <h2 style="text-align: center">Cart</h2>
 
     </div>
 </div>

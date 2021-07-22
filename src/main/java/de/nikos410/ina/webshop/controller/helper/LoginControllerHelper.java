@@ -22,7 +22,7 @@ public class LoginControllerHelper extends ControllerHelper {
     }
 
     @Override
-    public void doPost() {
+    public void doPost() throws IOException {
 
         try {
             authenticate(getRequest());

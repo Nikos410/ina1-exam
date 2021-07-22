@@ -8,6 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+import static java.text.MessageFormat.format;
+import static java.util.Objects.isNull;
+
 public abstract class ControllerHelper {
 
     private final HttpServletRequest request;
@@ -34,19 +37,15 @@ public abstract class ControllerHelper {
         return response;
     }
 
-    protected void requireSessionAuthenticated() {
+    protected void requireSessionAuthenticated() throws IOException {
         if (!AuthenticationUtils.isSessionAuthenticated(getRequest())) {
             redirect("/login");
         }
     }
 
-    protected void redirect(String path) {
+    protected void redirect(String path) throws IOException {
         final String redirectUrl = buildRedirectUrl(path);
-        try {
-            getResponse().sendRedirect(redirectUrl);
-        } catch (IOException e) {
-            throw new IllegalStateException("Could not redirect to " + path, e);
-        }
+        getResponse().sendRedirect(redirectUrl);
     }
 
     protected void forward(String path) throws ServletException, IOException {
@@ -57,6 +56,21 @@ public abstract class ControllerHelper {
     private String buildRedirectUrl(String destination) {
         final String contextPath = getRequest().getContextPath();
         return getResponse().encodeRedirectURL(contextPath + destination);
+    }
+
+    protected <T> T getSessionAttribute(String attributeName, Class<T> attributeType) {
+        final Object value = getRequest().getSession().getAttribute(attributeName);
+        if (isNull(value)) {
+            return null;
+        }
+
+        if (attributeType.isAssignableFrom(value.getClass())) {
+            return (T) value;
+        } else {
+            throw new IllegalStateException(
+                    format("Unexpected attribute type for attribute {0}. Expected type {1} but encountered {2}.",
+                            attributeName, attributeName, value.getClass()));
+        }
     }
 
     protected void setSessionAttribute(String attributeName, Object attributeValue) {

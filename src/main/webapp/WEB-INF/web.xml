@@ -31,4 +31,13 @@
         <url-pattern>/shop</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>shopping-cart-controller</servlet-name>
+        <servlet-class>de.nikos410.ina.webshop.controller.ShoppingCartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>shopping-cart-controller</servlet-name>
+        <url-pattern>/add-to-cart</url-pattern>
+    </servlet-mapping>
+
 </web-app>
