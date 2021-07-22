@@ -6,6 +6,8 @@ public class StockArticle extends BaseEntity {
 
     private String name;
     private String description;
+    // quantity allows decimal values, since it is possible for a shop to deal in goods that are not countable.
+    // For example, a shop might have 2.5 liters of some liquid in stock.
     private BigDecimal stockQuantity;
 
     @Override
