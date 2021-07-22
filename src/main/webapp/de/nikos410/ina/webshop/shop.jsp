@@ -4,6 +4,9 @@
 <%@ page import="de.nikos410.ina.webshop.model.entity.StockArticle" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="de.nikos410.ina.webshop.controller.helper.ShopControllerHelper" %>
+<%@ page import="de.nikos410.ina.webshop.model.ShoppingCartArticle" %>
+<%@ page import="de.nikos410.ina.webshop.controller.helper.ShoppingCartControllerHelper" %>
+<%@ page import="static java.util.Objects.isNull" %>
 <html>
 <head>
     <title>Shop</title>
@@ -48,6 +51,25 @@ AuthenticationUtils.getAuthenticatedUser(request)
     <div style="flex: 50%; padding: 1%">
         <h2 style="text-align: center">Cart</h2>
 
+        <%
+            final Collection<ShoppingCartArticle> shoppingCart =
+                    (Collection<ShoppingCartArticle>) request.getSession().getAttribute(ShoppingCartControllerHelper.SHOPPING_CART_ATTRIBUTE_NAME);
+            if (isNull(shoppingCart)) {
+                return;
+            }
+
+            for (ShoppingCartArticle article : shoppingCart) {
+                out.print("<strong>");
+                out.print(article.article().getName());
+                out.print("</strong>");
+                out.print("<p><em>");
+                out.print("Quantity: " + article.quantity());
+                out.print("</em></p>");
+
+                out.println("<hr/>");
+            }
+        %>
+        </ul>
     </div>
 </div>
 
