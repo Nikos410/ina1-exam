@@ -30,8 +30,10 @@ public class DataInitializer {
     }
 
     private void initializeUsers() {
+        System.out.println("Initializing users...");
         userRepository.add(buildUser1());
         userRepository.add(buildUser2());
+        System.out.println("Done.");
     }
 
     private User buildUser1() {
@@ -55,11 +57,13 @@ public class DataInitializer {
     }
 
     private void initializeStockArticles() {
+        System.out.println("Initializing stock articles...");
         stockArticleRepository.add(buildArticle1());
         stockArticleRepository.add(buildArticle2());
         stockArticleRepository.add(buildArticle3());
         stockArticleRepository.add(buildArticle4());
         stockArticleRepository.add(buildArticle5());
+        System.out.println("Done.");
     }
 
     private StockArticle buildArticle1() {
