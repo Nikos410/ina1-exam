@@ -58,9 +58,6 @@ public class ShoppingCartControllerHelper extends ControllerHelper {
         final ShoppingCartArticle shoppingCartArticle = new ShoppingCartArticle(selectedArticle, selectedQuantity);
         getOrCreateShoppingCart().add(shoppingCartArticle);
 
-        selectedArticle.setStockQuantity(selectedArticle.getStockQuantity().subtract(selectedQuantity));
-        stockArticleRepository.update(selectedArticle);
-
         redirect("/shop");
     }
 
