@@ -12,6 +12,8 @@ public class InMemoryStockArticleRepository extends InMemoryRepository<StockArti
 
     private static final InMemoryStockArticleRepository INSTANCE = new InMemoryStockArticleRepository();
 
+    private InMemoryStockArticleRepository() {}
+
     public static StockArticleRepository getInstance() {
         return INSTANCE;
     }

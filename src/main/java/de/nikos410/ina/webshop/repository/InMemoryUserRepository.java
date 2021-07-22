@@ -8,6 +8,8 @@ public class InMemoryUserRepository extends InMemoryRepository<User> implements 
 
     private static final InMemoryUserRepository INSTANCE = new InMemoryUserRepository();
 
+    private InMemoryUserRepository() {}
+
     public static InMemoryUserRepository getInstance() {
         return INSTANCE;
     }
