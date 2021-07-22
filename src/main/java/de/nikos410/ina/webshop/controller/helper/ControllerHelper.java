@@ -1,6 +1,7 @@
 package de.nikos410.ina.webshop.controller.helper;
 
 import de.nikos410.ina.webshop.exception.RequestMethodNotSupportedException;
+import de.nikos410.ina.webshop.util.AuthenticationUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,7 +18,7 @@ public abstract class ControllerHelper {
         this.response = response;
     }
 
-    public void doGet() throws ServletException, IOException{
+    public void doGet() throws ServletException, IOException {
         throw new RequestMethodNotSupportedException("Request method GET not supported for this operation.");
     }
 
@@ -31,6 +32,12 @@ public abstract class ControllerHelper {
 
     protected HttpServletResponse getResponse() {
         return response;
+    }
+
+    protected void requireSessionAuthenticated() {
+        if (!AuthenticationUtils.isSessionAuthenticated(getRequest())) {
+            redirect("/login");
+        }
     }
 
     protected void redirect(String path) {
@@ -50,5 +57,9 @@ public abstract class ControllerHelper {
     private String buildRedirectUrl(String destination) {
         final String contextPath = getRequest().getContextPath();
         return getResponse().encodeRedirectURL(contextPath + destination);
+    }
+
+    protected void setSessionAttribute(String attributeName, Object attributeValue) {
+        getRequest().getSession().setAttribute(attributeName, attributeValue);
     }
 }

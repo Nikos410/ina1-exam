@@ -10,17 +10,8 @@
     </listener>
 
     <welcome-file-list>
-        <welcome-file>/login-form</welcome-file>
+        <welcome-file>/login</welcome-file>
     </welcome-file-list>
-
-    <servlet>
-        <servlet-name>login-form</servlet-name>
-        <jsp-file>/de/nikos410/ina/webshop/login.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>login-form</servlet-name>
-        <url-pattern>/login-form</url-pattern>
-    </servlet-mapping>
 
     <servlet>
         <servlet-name>login-controller</servlet-name>
@@ -29,6 +20,15 @@
     <servlet-mapping>
         <servlet-name>login-controller</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>shop-controller</servlet-name>
+        <servlet-class>de.nikos410.ina.webshop.controller.ShopController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>shop-controller</servlet-name>
+        <url-pattern>/shop</url-pattern>
     </servlet-mapping>
 
 </web-app>

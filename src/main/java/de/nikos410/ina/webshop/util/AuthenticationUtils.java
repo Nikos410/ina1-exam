@@ -9,12 +9,16 @@ import de.nikos410.ina.webshop.security.PasswordEncoder;
 import de.nikos410.ina.webshop.security.Sha256PasswordEncoder;
 import jakarta.servlet.http.HttpServletRequest;
 
+import java.util.Optional;
+
+import static java.util.Objects.isNull;
+
 public final class AuthenticationUtils {
 
     public static final String USERNAME_PARAMETER_NAME = "username";
     public static final String PASSWORD_PARAMETER_NAME = "password";
 
-    private static final String AUTHENTICATED_USER_ATTRIBUTE_NAME = "authenticatedUser";
+    public static final String AUTHENTICATED_USER_ATTRIBUTE_NAME = "authenticatedUser";
 
     private static final UserRepository USER_REPOSITORY = InMemoryUserRepository.getInstance();
     private static final PasswordEncoder PASSWORD_ENCODER = new Sha256PasswordEncoder();
@@ -41,5 +45,18 @@ public final class AuthenticationUtils {
 
     private static void assignToSession(User authenticatedUser, HttpServletRequest httpServletRequest) {
         httpServletRequest.getSession().setAttribute(AUTHENTICATED_USER_ATTRIBUTE_NAME, authenticatedUser);
+    }
+
+    public static boolean isSessionAuthenticated(HttpServletRequest httpServletRequest) {
+        return getAuthenticatedUser(httpServletRequest).isPresent();
+    }
+
+    public static Optional<User> getAuthenticatedUser(HttpServletRequest httpServletRequest) {
+        final Object authenticatedUser = httpServletRequest.getSession().getAttribute(AUTHENTICATED_USER_ATTRIBUTE_NAME);
+        if (isNull(authenticatedUser)) {
+            return Optional.empty();
+        } else {
+            return Optional.of((User) authenticatedUser);
+        }
     }
 }

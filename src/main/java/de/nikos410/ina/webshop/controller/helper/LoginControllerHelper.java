@@ -18,7 +18,7 @@ public class LoginControllerHelper extends ControllerHelper {
 
     @Override
     public void doGet() throws ServletException, IOException {
-        forward("/login-form");
+        forward("/de/nikos410/ina/webshop/login.jsp");
     }
 
     @Override
@@ -26,7 +26,7 @@ public class LoginControllerHelper extends ControllerHelper {
 
         try {
             authenticate(getRequest());
-            // TODO: redirect to shop page
+            redirect("/shop");
         } catch (BadCredentialsException e) {
             redirect("/login?error");
         }
