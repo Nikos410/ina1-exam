@@ -62,7 +62,7 @@
         <%
             final String ordered = request.getParameter("ordered");
             if (nonNull(ordered)) {
-                out.println("<h3 style=\"color:green\">Order successful!</h4>");
+                out.println("<h2 style=\"color:green; text-align:center\">Order successful. Have fun!</h2>");
                 return;
             }
 
