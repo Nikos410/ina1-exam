@@ -12,9 +12,11 @@
     </label>
     <label>
         <span>Password</span>
-        <input name="password" type="text" required="required">
+        <input name="password" type="password" required="required">
     </label>
-    <input type="submit">
+    <button type="submit">
+        Login
+    </button>
 
     <%
         final String error = request.getParameter("error");
