@@ -20,6 +20,8 @@ public abstract class InMemoryRepository<T extends BaseEntity> implements Reposi
 
     protected final Set<T> content = new HashSet<>();
 
+    protected InMemoryRepository() {}
+
     /**
      * {@inheritDoc}
      *

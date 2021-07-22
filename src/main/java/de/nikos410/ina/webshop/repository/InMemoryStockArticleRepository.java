@@ -10,6 +10,12 @@ import static java.util.stream.Collectors.toUnmodifiableSet;
 
 public class InMemoryStockArticleRepository extends InMemoryRepository<StockArticle> implements StockArticleRepository{
 
+    private static final InMemoryStockArticleRepository INSTANCE = new InMemoryStockArticleRepository();
+
+    public static StockArticleRepository getInstance() {
+        return INSTANCE;
+    }
+
     @Override
     public Set<StockArticle> findAllAvailable() {
         return content.stream()
