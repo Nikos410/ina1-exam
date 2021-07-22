@@ -14,11 +14,11 @@
 </head>
 <body>
 <h1 style="text-align: center">
-    Welcome, <%=
-AuthenticationUtils.getAuthenticatedUser(request)
-        .map(User::getFullName)
-        .orElseThrow(() -> new IllegalStateException("No authenticated user found."))
-%>!
+        Welcome, <%=
+    AuthenticationUtils.getAuthenticatedUser(request)
+            .map(User::getFullName)
+            .orElseThrow(() -> new IllegalStateException("No authenticated user found."))
+    %>! <a href="logout">Logout</a>
 </h1>
 
 <%

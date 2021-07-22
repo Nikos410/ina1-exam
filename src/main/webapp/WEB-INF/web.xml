@@ -23,6 +23,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>logout-controller</servlet-name>
+        <servlet-class>de.nikos410.ina.webshop.controller.LogoutController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout-controller</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>shop-controller</servlet-name>
         <servlet-class>de.nikos410.ina.webshop.controller.ShopController</servlet-class>
     </servlet>
