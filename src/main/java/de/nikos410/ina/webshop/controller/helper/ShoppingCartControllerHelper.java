@@ -30,7 +30,7 @@ public class ShoppingCartControllerHelper extends ControllerHelper {
     }
 
     @Override
-    public void doPost() throws ServletException, IOException {
+    public void doPost() throws IOException {
         requireSessionAuthenticated();
 
         final Optional<StockArticle> selectedArticle = getSelectedArticle();

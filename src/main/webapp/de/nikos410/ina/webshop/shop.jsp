@@ -7,6 +7,7 @@
 <%@ page import="de.nikos410.ina.webshop.model.ShoppingCartArticle" %>
 <%@ page import="de.nikos410.ina.webshop.controller.helper.ShoppingCartControllerHelper" %>
 <%@ page import="static java.util.Objects.isNull" %>
+<%@ page import="static java.util.Objects.nonNull" %>
 <html>
 <head>
     <title>Shop</title>
@@ -19,6 +20,13 @@ AuthenticationUtils.getAuthenticatedUser(request)
         .orElseThrow(() -> new IllegalStateException("No authenticated user found."))
 %>!
 </h1>
+
+<%
+    final String error = request.getParameter("error");
+    if (nonNull(error)) {
+        out.println("<h3 style=\"color:red\">" + error + "</h3>");
+    }
+%>
 
 <div style="display: flex">
     <div style="flex: 50%; padding: 1%">
@@ -37,7 +45,7 @@ AuthenticationUtils.getAuthenticatedUser(request)
                 out.print(article.getDescription());
                 out.println("</em></p>");
 
-                out.println("<form method=\"post\" action=\"/add-to-cart\">");
+                out.println("<form method=\"post\" action=\"add-to-cart\">");
                 out.println("<input name=\"article\" type=\"hidden\" value=\"" + article.getId() + "\">");
                 out.println("<label><input name=\"quantity\" type=\"number\" min=\"0\" max=\"" + article.getStockQuantity() + "\" placeholder=\"Quantity\" required=\"required\"><span>" + article.getStockQuantity() + " in stock</span></label>");
                 out.println("<button type=\"submit\">Add to cart</button>");
@@ -52,6 +60,12 @@ AuthenticationUtils.getAuthenticatedUser(request)
         <h2 style="text-align: center">Cart</h2>
 
         <%
+            final String ordered = request.getParameter("ordered");
+            if (nonNull(ordered)) {
+                out.println("<h3 style=\"color:green\">Order successful!</h4>");
+                return;
+            }
+
             final Collection<ShoppingCartArticle> shoppingCart =
                     (Collection<ShoppingCartArticle>) request.getSession().getAttribute(ShoppingCartControllerHelper.SHOPPING_CART_ATTRIBUTE_NAME);
             if (isNull(shoppingCart)) {
@@ -68,8 +82,13 @@ AuthenticationUtils.getAuthenticatedUser(request)
 
                 out.println("<hr/>");
             }
+
+            if (!shoppingCart.isEmpty()) {
+                out.println("<form method=\"post\" action=\"order\">");
+                out.println("<button type=\"submit\">Order</button>");
+                out.println("</form>");
+            }
         %>
-        </ul>
     </div>
 </div>
 

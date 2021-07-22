@@ -40,4 +40,13 @@
         <url-pattern>/add-to-cart</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>order-controller</servlet-name>
+        <servlet-class>de.nikos410.ina.webshop.controller.OrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>order-controller</servlet-name>
+        <url-pattern>/order</url-pattern>
+    </servlet-mapping>
+
 </web-app>
