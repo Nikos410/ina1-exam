@@ -31,7 +31,6 @@ public class OrderControllerHelper extends ControllerHelper {
             return;
         }
 
-        shoppingCart.forEach(this::decreaseStockQuantity);
         shoppingCart.clear();
 
         redirect("/shop?ordered");
@@ -39,13 +38,5 @@ public class OrderControllerHelper extends ControllerHelper {
 
     private Collection<ShoppingCartArticle> getShoppingCart() {
         return getSessionAttribute(SHOPPING_CART_ATTRIBUTE_NAME, Collection.class);
-    }
-
-    private void decreaseStockQuantity(ShoppingCartArticle shoppingCartArticle) {
-        final StockArticle stockArticle = stockArticleRepository.findOneById(shoppingCartArticle.article().getId())
-                .orElseThrow(() -> new IllegalStateException("Unknown article in shopping cart: " + shoppingCartArticle));
-
-        stockArticle.setStockQuantity(stockArticle.getStockQuantity().subtract(shoppingCartArticle.quantity()));
-        stockArticleRepository.update(stockArticle);
     }
 }

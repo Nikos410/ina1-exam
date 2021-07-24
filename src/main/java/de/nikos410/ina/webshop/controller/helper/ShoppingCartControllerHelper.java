@@ -55,10 +55,22 @@ public class ShoppingCartControllerHelper extends ControllerHelper {
             return;
         }
 
-        final ShoppingCartArticle shoppingCartArticle = new ShoppingCartArticle(selectedArticle, selectedQuantity);
-        getOrCreateShoppingCart().add(shoppingCartArticle);
+        addToShoppingCart(selectedArticle, selectedQuantity);
+        decreaseStockQuantity(selectedArticle, selectedQuantity);
 
         redirect("/shop");
+    }
+
+    private void addToShoppingCart(StockArticle stockArticle, BigDecimal quantity) {
+        final ShoppingCartArticle shoppingCartArticle = new ShoppingCartArticle(stockArticle, quantity);
+        getOrCreateShoppingCart().add(shoppingCartArticle);
+    }
+
+    private void decreaseStockQuantity(StockArticle stockArticle, BigDecimal by) {
+        final BigDecimal decreasedStockQuantity = stockArticle.getStockQuantity().subtract(by);
+        stockArticle.setStockQuantity(decreasedStockQuantity);
+
+        stockArticleRepository.update(stockArticle);
     }
 
     private Optional<StockArticle> getSelectedArticle() {
