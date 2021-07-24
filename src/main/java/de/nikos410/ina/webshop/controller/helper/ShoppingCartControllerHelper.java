@@ -5,7 +5,6 @@ import de.nikos410.ina.webshop.model.entity.StockArticle;
 import de.nikos410.ina.webshop.repository.InMemoryStockArticleRepository;
 import de.nikos410.ina.webshop.repository.StockArticleRepository;
 import de.nikos410.ina.webshop.util.BigDecimalUtils;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
