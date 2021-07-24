@@ -31,12 +31,16 @@ public class OrderControllerHelper extends ControllerHelper {
             return;
         }
 
-        shoppingCart.clear();
+        processOrder(shoppingCart);
 
         redirect("/shop?ordered");
     }
 
     private Collection<ShoppingCartArticle> getShoppingCart() {
         return getSessionAttribute(SHOPPING_CART_ATTRIBUTE_NAME, Collection.class);
+    }
+
+    private void processOrder(Collection<ShoppingCartArticle> shoppingCart) {
+        shoppingCart.clear();
     }
 }
