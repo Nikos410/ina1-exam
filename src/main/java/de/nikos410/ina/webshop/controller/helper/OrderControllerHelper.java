@@ -1,9 +1,6 @@
 package de.nikos410.ina.webshop.controller.helper;
 
 import de.nikos410.ina.webshop.model.ShoppingCartArticle;
-import de.nikos410.ina.webshop.model.entity.StockArticle;
-import de.nikos410.ina.webshop.repository.InMemoryStockArticleRepository;
-import de.nikos410.ina.webshop.repository.StockArticleRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
