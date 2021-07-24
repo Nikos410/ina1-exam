@@ -17,13 +17,19 @@
     <title>Shop</title>
 </head>
 <body>
-<h1 style="text-align: center">
+<div style="text-align: center">
+    <h1>
         Welcome, <%=
     AuthenticationUtils.getAuthenticatedUser(request)
             .map(User::getFullName)
             .orElseThrow(() -> new IllegalStateException("No authenticated user found."))
-    %>! <a href="logout">Logout</a>
-</h1>
+    %>!
+    </h1>
+    <a href="logout"><button>Logout</button></a>
+    <a href="delete-account"><button>Delete your account</button></a>
+</div>
+
+<hr/>
 
 <%
     final String error = request.getParameter("error");

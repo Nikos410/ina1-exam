@@ -41,6 +41,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>delete-account-controller</servlet-name>
+        <servlet-class>de.nikos410.ina.webshop.controller.DeleteAccountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>delete-account-controller</servlet-name>
+        <url-pattern>/delete-account</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>shop-controller</servlet-name>
         <servlet-class>de.nikos410.ina.webshop.controller.ShopController</servlet-class>
     </servlet>
