@@ -13,6 +13,8 @@ import static java.util.Objects.isNull;
 
 public abstract class ControllerHelper {
 
+    public static final String AUTHENTICATED_USER_ATTRIBUTE_NAME = "authenticatedUser";
+
     private final HttpServletRequest request;
     private final HttpServletResponse response;
 
@@ -38,9 +40,14 @@ public abstract class ControllerHelper {
     }
 
     protected void requireSessionAuthenticated() throws IOException {
-        if (!AuthenticationUtils.isSessionAuthenticated(getRequest())) {
+        if (!isSessionAuthenticated()) {
             redirect("/login");
         }
+    }
+
+    protected boolean isSessionAuthenticated() {
+        return AuthenticationUtils.getAuthenticatedUser(getRequest())
+                .isPresent();
     }
 
     protected void redirect(String path) throws IOException {
@@ -48,14 +55,14 @@ public abstract class ControllerHelper {
         getResponse().sendRedirect(redirectUrl);
     }
 
-    protected void forward(String path) throws ServletException, IOException {
-        final var requestDispatcher = getRequest().getRequestDispatcher(path);
-        requestDispatcher.forward(getRequest(), getResponse());
-    }
-
     private String buildRedirectUrl(String destination) {
         final String contextPath = getRequest().getContextPath();
         return getResponse().encodeRedirectURL(contextPath + destination);
+    }
+
+    protected void forward(String path) throws ServletException, IOException {
+        final var requestDispatcher = getRequest().getRequestDispatcher(path);
+        requestDispatcher.forward(getRequest(), getResponse());
     }
 
     protected <T> T getSessionAttribute(String attributeName, Class<T> attributeType) {

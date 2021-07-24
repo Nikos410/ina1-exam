@@ -1,7 +1,6 @@
 package de.nikos410.ina.webshop.controller;
 
 import de.nikos410.ina.webshop.controller.helper.ControllerHelper;
-import de.nikos410.ina.webshop.controller.helper.LoginControllerHelper;
 import de.nikos410.ina.webshop.controller.helper.LogoutControllerHelper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

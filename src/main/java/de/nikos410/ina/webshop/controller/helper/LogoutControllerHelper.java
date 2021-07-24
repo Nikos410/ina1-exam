@@ -12,7 +12,6 @@ import java.math.BigDecimal;
 import java.util.Collection;
 
 import static de.nikos410.ina.webshop.controller.helper.ShoppingCartControllerHelper.SHOPPING_CART_ATTRIBUTE_NAME;
-import static de.nikos410.ina.webshop.util.AuthenticationUtils.AUTHENTICATED_USER_ATTRIBUTE_NAME;
 import static java.util.Objects.nonNull;
 
 public class LogoutControllerHelper extends ControllerHelper {

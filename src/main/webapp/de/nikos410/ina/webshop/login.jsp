@@ -1,4 +1,6 @@
 <%@ page import="static java.util.Objects.nonNull" %>
+<%@ page import="static de.nikos410.ina.webshop.controller.helper.LoginControllerHelper.USERNAME_PARAMETER_NAME" %>
+<%@ page import="static de.nikos410.ina.webshop.controller.helper.LoginControllerHelper.PASSWORD_PARAMETER_NAME" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -8,11 +10,11 @@
 <form method="post" action="login">
     <label>
         <span>Username</span>
-        <input name="username" type="text" required="required">
+        <input name="<%= USERNAME_PARAMETER_NAME %>" type="text" required="required">
     </label>
     <label>
         <span>Password</span>
-        <input name="password" type="password" required="required">
+        <input name="<%= PASSWORD_PARAMETER_NAME %>" type="password" required="required">
     </label>
     <button type="submit">
         Login

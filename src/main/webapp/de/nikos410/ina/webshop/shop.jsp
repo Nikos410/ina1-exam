@@ -8,6 +8,10 @@
 <%@ page import="de.nikos410.ina.webshop.controller.helper.ShoppingCartControllerHelper" %>
 <%@ page import="static java.util.Objects.isNull" %>
 <%@ page import="static java.util.Objects.nonNull" %>
+<%@ page
+        import="static de.nikos410.ina.webshop.controller.helper.ShoppingCartControllerHelper.SELECTED_ARTICLE_PARAMETER_NAME" %>
+<%@ page
+        import="static de.nikos410.ina.webshop.controller.helper.ShoppingCartControllerHelper.SELECTED_QUANTITY_PARAMETER_NAME" %>
 <html>
 <head>
     <title>Shop</title>
@@ -46,8 +50,8 @@
                 out.println("</em></p>");
 
                 out.println("<form method=\"post\" action=\"add-to-cart\">");
-                out.println("<input name=\"article\" type=\"hidden\" value=\"" + article.getId() + "\">");
-                out.println("<label><input name=\"quantity\" type=\"number\" min=\"0\" max=\"" + article.getStockQuantity() + "\" placeholder=\"Quantity\" required=\"required\"><span>" + article.getStockQuantity() + " in stock</span></label>");
+                out.println("<input name=\"" + SELECTED_ARTICLE_PARAMETER_NAME + "\" type=\"hidden\" value=\"" + article.getId() + "\">");
+                out.println("<label><input name=\"" + SELECTED_QUANTITY_PARAMETER_NAME + "\" type=\"number\" min=\"0\" max=\"" + article.getStockQuantity() + "\" placeholder=\"Quantity\" required=\"required\"><span>" + article.getStockQuantity() + " in stock</span></label>");
                 out.println("<button type=\"submit\">Add to cart</button>");
                 out.println("</form>");
 
