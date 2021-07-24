@@ -12,8 +12,6 @@ import static java.util.Objects.isNull;
 
 public class OrderControllerHelper extends ControllerHelper {
 
-    private final StockArticleRepository stockArticleRepository = InMemoryStockArticleRepository.getInstance();
-
     public OrderControllerHelper(HttpServletRequest request, HttpServletResponse response) {
         super(request, response);
     }
