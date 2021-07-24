@@ -26,6 +26,10 @@
             out.println("<p style=\"color:red\">Bad credentials.</p>");
         }
     %>
+
+    <hr/>
+
+    <a href="register"><p>Register</p></a>
 </form>
 </body>
 </html>

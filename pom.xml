@@ -41,6 +41,9 @@
                 <version>11.0.6</version>
                 <configuration>
                     <scan>1</scan>
+                    <webApp>
+                        <contextPath>/bla</contextPath>
+                    </webApp>
                 </configuration>
             </plugin>
         </plugins>
