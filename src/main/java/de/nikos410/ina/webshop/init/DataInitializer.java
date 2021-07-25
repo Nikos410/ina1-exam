@@ -33,6 +33,7 @@ public class DataInitializer {
         System.out.println("Initializing users...");
         userRepository.add(buildUser1());
         userRepository.add(buildUser2());
+        userRepository.add(buildAdminUser());
         System.out.println("Done.");
     }
 
@@ -54,6 +55,16 @@ public class DataInitializer {
         user2.setEmailAddress("john.doe@example.com");
 
         return user2;
+    }
+
+    private User buildAdminUser() {
+        final var adminUser = new User();
+        adminUser.setUsername("admin");
+        adminUser.setPasswordHash(passwordEncoder.encode("admin"));
+        adminUser.setFullName("Administrator");
+        adminUser.setEmailAddress("admin@example.com");
+
+        return adminUser;
     }
 
     private void initializeStockArticles() {
