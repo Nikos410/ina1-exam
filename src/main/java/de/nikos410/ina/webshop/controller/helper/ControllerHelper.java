@@ -53,7 +53,7 @@ public abstract class ControllerHelper {
     }
 
     protected void requireSessionAuthenticated(String username) throws IOException {
-        if (isSessionAuthenticated(username)) {
+        if (!isSessionAuthenticated(username)) {
             redirect("/login?error=You%20are%20not%20authorized%20to%20access%20this%20page.");
         }
     }
