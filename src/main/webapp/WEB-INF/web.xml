@@ -77,4 +77,40 @@
         <url-pattern>/order</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>manage-stock-articles-controller</servlet-name>
+        <servlet-class>de.nikos410.ina.webshop.controller.ManageStockArticlesController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>manage-stock-articles-controller</servlet-name>
+        <url-pattern>/manage-stock-articles</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>manage-stock-articles-add-controller</servlet-name>
+        <servlet-class>de.nikos410.ina.webshop.controller.ManageStockArticlesAddController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>manage-stock-articles-add-controller</servlet-name>
+        <url-pattern>/manage-stock-articles/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>manage-stock-articles-delete-controller</servlet-name>
+        <servlet-class>de.nikos410.ina.webshop.controller.ManageStockArticlesDeleteController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>manage-stock-articles-delete-controller</servlet-name>
+        <url-pattern>/manage-stock-articles/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>manage-stock-articles-change-quantity-controller</servlet-name>
+        <servlet-class>de.nikos410.ina.webshop.controller.ManageStockArticlesChangeQuantityController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>manage-stock-articles-change-quantity-controller</servlet-name>
+        <url-pattern>/manage-stock-articles/quantity</url-pattern>
+    </servlet-mapping>
+
 </web-app>

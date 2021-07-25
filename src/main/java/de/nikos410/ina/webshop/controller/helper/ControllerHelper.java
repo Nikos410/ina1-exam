@@ -1,12 +1,14 @@
 package de.nikos410.ina.webshop.controller.helper;
 
 import de.nikos410.ina.webshop.exception.RequestMethodNotSupportedException;
+import de.nikos410.ina.webshop.model.entity.User;
 import de.nikos410.ina.webshop.util.AuthenticationUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import static java.text.MessageFormat.format;
 import static java.util.Objects.isNull;
@@ -45,9 +47,20 @@ public abstract class ControllerHelper {
         }
     }
 
-    protected boolean isSessionAuthenticated() {
+    private boolean isSessionAuthenticated() {
         return AuthenticationUtils.getAuthenticatedUser(getRequest())
                 .isPresent();
+    }
+
+    protected void requireSessionAuthenticated(String username) throws IOException {
+        if (isSessionAuthenticated(username)) {
+            redirect("/login?error=You%20are%20not%20authorized%20to%20access%20this%20page.");
+        }
+    }
+
+    private boolean isSessionAuthenticated(String username) {
+        final Optional<User> authenticatedUser =  AuthenticationUtils.getAuthenticatedUser(getRequest());
+        return authenticatedUser.isPresent() && username.equals(authenticatedUser.get().getUsername());
     }
 
     protected void redirect(String path) throws IOException {

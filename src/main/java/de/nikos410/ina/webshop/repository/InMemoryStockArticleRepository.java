@@ -3,6 +3,7 @@ package de.nikos410.ina.webshop.repository;
 import de.nikos410.ina.webshop.model.entity.StockArticle;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 import java.util.Set;
 
 import static de.nikos410.ina.webshop.util.BigDecimalUtils.isGreaterThan;
@@ -30,4 +31,10 @@ public class InMemoryStockArticleRepository extends InMemoryRepository<StockArti
         return isGreaterThan(stockQuantity, BigDecimal.ZERO);
     }
 
+    @Override
+    public Optional<StockArticle> findOneByName(String name) {
+        return content.stream()
+                .filter(a -> name.equalsIgnoreCase(a.getName()))
+                .findAny();
+    }
 }

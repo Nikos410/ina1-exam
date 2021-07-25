@@ -10,6 +10,15 @@ public class StockArticle extends BaseEntity {
     // For example, a shop might have 2.5 liters of some liquid in stock.
     private BigDecimal stockQuantity;
 
+    public StockArticle() {
+    }
+
+    public StockArticle(String name, String description, BigDecimal stockQuantity) {
+        this.name = name;
+        this.description = description;
+        this.stockQuantity = stockQuantity;
+    }
+
     @Override
     protected boolean canEquals(BaseEntity other) {
         return other instanceof StockArticle;
