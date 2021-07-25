@@ -18,15 +18,20 @@
 </head>
 <body>
 <div style="text-align: center">
+    <%
+        final User authenticatedUser = AuthenticationUtils.getAuthenticatedUser(request)
+            .orElseThrow(() -> new IllegalStateException("No authenticated user found."));
+    %>
     <h1>
-        Welcome, <%=
-    AuthenticationUtils.getAuthenticatedUser(request)
-            .map(User::getFullName)
-            .orElseThrow(() -> new IllegalStateException("No authenticated user found."))
-    %>!
+        Welcome, <%= authenticatedUser.getFullName() %>!
     </h1>
     <a href="logout"><button>Logout</button></a>
     <a href="delete-account"><button>Delete your account</button></a>
+    <%
+        if ("admin".equals(authenticatedUser.getUsername())) {
+            out.println("<a href=\"manage-stock-articles\"><button>(Admin) Manage stock articles</button></a>");
+        }
+    %>
 </div>
 
 <hr/>
